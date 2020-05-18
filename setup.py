@@ -13,22 +13,22 @@ with open('README.md', encoding='utf-8') as f:
     
 setup(
     name='cirkel',
-    version='0.1',
+    version='0.2',
     packages=['cirkel'],
-    python_requires='>=3.4',
+    python_requires='>=3.5',
     description='Automata plotting circles on canvas',
     long_description = README_TEXT,    
     long_description_content_type='text/markdown',
-    url='https://bitbucket.org/zmic/cirkel',
+    url='https://github.com/zmic/cirkel',
     author='Michael Vanslembrouck',
     license='MIT',
     package_data = {
-        '': ['cirkel/example/*.py', 'cirkel/ccirkel.pyd'],
+        '': ['example/*.py', 'ccirkel.pyd'],
     },    
     cmdclass={'bdist_wheel': bdist_wheel},    
     classifiers=[
         'Development Status :: 3 - Alpha',
-    ]        
+    ],
     install_requires=['numpy', 'imageio']
 )
 
