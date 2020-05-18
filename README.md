@@ -7,8 +7,8 @@
 ## What is it?
 It's a Python module written in C++ that paints colored disks on a canvas, using an inscrutable automaton-like ruleset.
 
-Examples of what this program can produce are can be found on 
-[my Flickr page](https://www.flickr.com/photos/66348526@N00/albums/72157665578003511">my Flickr page)
+Examples of what this program can produce can be found on 
+[my Flickr page](https://www.flickr.com/photos/66348526@N00/albums/72157665578003511)
 
 ## How to install it (Windows only for now)
 
