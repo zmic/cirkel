@@ -23,6 +23,8 @@ I wrote this code in a hurry during a two week period in 2014, for fun and quick
 ## How to  use it
 Call `cirkel.cirkel1` with a pile of parameters and you will get back an image (as a numpy array). Finding the parameters that produce nice results, therein lies the art.
 
+The following script should produce the image shown on this page:
+
 ```
 import os
 import numpy as np
@@ -115,6 +117,9 @@ def example1():
     
     # pop up the picture
     os.system("test.jpg")
+
+if __name__ == '__main__':    
+    example1()
 ```
 
 
