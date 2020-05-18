@@ -8,13 +8,8 @@ class bdist_wheel(_bdist_wheel):
         _bdist_wheel.finalize_options(self)
         self.root_is_pure = False
             
-#readme = open('README.rst', 'r')
-#README_TEXT = readme.read()
-#readme.close()
-
 with open('README.md', encoding='utf-8') as f:
     README_TEXT = f.read()
-    
     
 setup(
     name='cirkel',
@@ -34,6 +29,7 @@ setup(
     classifiers=[
         'Development Status :: 3 - Alpha',
     ]        
+    install_requires=['numpy', 'imageio']
 )
 
       

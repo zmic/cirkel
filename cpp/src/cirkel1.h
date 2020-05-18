@@ -128,6 +128,9 @@ struct node3 : public node
 		const int STACK_SIZE,
 		const int start_d,
 		const int fail_limit2,
+		const int fanout_multiplier,
+		const double f0,
+		const double f1,
 		const unsigned char* rgb,
 		const unsigned char* rgb_inc
 	)
@@ -136,7 +139,7 @@ struct node3 : public node
 		_lastd = start_d;
 		for (;;)
 		{
-			if (!act3_(canvas, N, STACK_SIZE, start_d, fail_limit2, rgb, rgb_inc))
+			if (!act3_(canvas, N, STACK_SIZE, start_d, fail_limit2, fanout_multiplier, f0, f1, rgb, rgb_inc))
 			{
 				break;
 			}
@@ -149,6 +152,9 @@ struct node3 : public node
 		const int STACK_SIZE,
 		const int fail_limit1,
 		const int fail_limit2,
+		const int fanout_multiplier,
+		const double f0,
+		const double f1,
 		const unsigned char* rgb,
 		const unsigned char* rgb_inc
 	)
@@ -162,7 +168,7 @@ struct node3 : public node
 				{
 					//if (!e->_dead)
 					{
-						s += e->act3_(canvas, N, STACK_SIZE, fail_limit1, fail_limit2, rgb + 3, rgb_inc + 3);
+						s += e->act3_(canvas, N, STACK_SIZE, fail_limit1, fail_limit2, fanout_multiplier, f0, f1, rgb + 3, rgb_inc + 3);
 					}
 				}
 				if (s == 0)
@@ -178,9 +184,10 @@ struct node3 : public node
 			else
 			{
 				double i = *_j++;
-				if (_depth == 0 || (i > .15 && i < .20 && _depth < STACK_SIZE))
-				{
-					int nbr_rot = int(2 + i * 120);
+				if (_depth == 0 || (i > f0 && i < f1 && _depth + 1 < STACK_SIZE))
+				//if (_depth == 0 || (i < .20 && _depth + 1 < STACK_SIZE))
+					{
+					int nbr_rot = int(2 + i * fanout_multiplier);
 					for (int j = 0; j < nbr_rot; ++j)
 					{
 						node3* p2 = new node3(this);

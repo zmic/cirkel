@@ -1,1 +1,1 @@
-from cirkel import cirkel
+from .functions import *

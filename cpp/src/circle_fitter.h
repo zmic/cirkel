@@ -2,8 +2,14 @@ class CircleFitter
 {
 	std::vector< std::tuple<int, std::vector<unsigned char>, std::vector<unsigned char> > > _masks;
 public:
-	CircleFitter(int* diameters, int ndiameters) : _masks(ndiameters)
+	CircleFitter(int* diameters, int ndiameters)
 	{
+		create_masks(diameters, ndiameters);
+	}
+	void create_masks(int* diameters, int ndiameters)
+	{
+		_masks.clear();
+		_masks.resize(ndiameters);
 		for (int ri = 0; ri < ndiameters; ++ri)
 		{
 			const int d = diameters[ri];
@@ -245,9 +251,9 @@ public:
 		const double ca = cos(angle) / X;
 		const double sa = sin(angle) / Y;
 
-		//for (auto& e : _masks)
 		int start_ei = first * .7 * _masks.size();
 		for (int ei = start_ei; ei < _masks.size(); ++ei)
+		//for (auto& e : _masks)
 		{
 			auto& e = _masks[ei];
 			const int d = std::get<0>(e);

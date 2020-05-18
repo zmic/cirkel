@@ -1643,7 +1643,9 @@ copy $(TargetPath) ..\..\cirkel\ccirkel$(underscore_d).pyd</Command>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\circle_fitter.h" />
+    <ClInclude Include="..\src\circle_fitter2.h" />
     <ClInclude Include="..\src\cirkel1.h" />
+    <ClInclude Include="..\src\cirkel2.h" />
     <ClInclude Include="..\src\util.h" />
     <ClInclude Include="..\src\util_py.h" />
     <ClInclude Include="..\src\_precompile.h" />

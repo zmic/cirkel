@@ -2,13 +2,15 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros">
+    <debug_build_for_release_python>1</debug_build_for_release_python>        
     <build_root>$(SolutionDir)..\_build\vs2017-$(Configuration)-$(PlatformShortName)\</build_root>  
     <python_version>$(Configuration.Substring($([MSBuild]::Add($(Configuration.IndexOf('-')), 1))))</python_version>
     <debug_or_release>$(Configuration.Substring(0, $(Configuration.IndexOf('-'))))</debug_or_release>
-    <underscore_d Condition="$(debug_or_release)=='Debug'">_d</underscore_d>  
+    <underscore_d Condition="$(debug_or_release)=='Debug' and $(debug_build_for_release_python)==0">_d</underscore_d>  
+    <underscore_d Condition="$(debug_or_release)=='Debug' and $(debug_build_for_release_python)==1"></underscore_d>  
     <underscore_d Condition="$(debug_or_release)=='Release'"></underscore_d>      
     <extension_basename>ccirkel</extension_basename>
-    <extension_fullname>$(extension_basename)_cp$(python_version)_$(PlatformShortName)</extension_fullname>      
+    <extension_fullname>$(extension_basename)_cp$(python_version)_$(PlatformShortName)</extension_fullname>          
     <python_path Condition="$(python_version)=='30' and $(Platform)=='Win32'">c:\python30-32</python_path>
     <python_path Condition="$(python_version)=='30' and $(Platform)=='x64'">c:\python30</python_path>
     <python_path Condition="$(python_version)=='31' and $(Platform)=='Win32'">c:\python31-32</python_path>
@@ -40,7 +42,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
-      <PreprocessorDefinitions>MODULE_NAME=$(extension_basename);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>DEBUG_BUILD_FOR_RELEASE_PYTHON=$(debug_build_for_release_python);MODULE_NAME=$(extension_basename);%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>    
   <ItemGroup>

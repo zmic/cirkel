@@ -2,6 +2,7 @@
 #include "util_py.h"
 
 
+int whose_idea_was_this();
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -58,6 +59,8 @@ INIT_FUNCTION_RETURN_TYPE INIT_FUNCTION()
 	v_method_defs.push_back(null);
 	moduledef.m_methods = &v_method_defs.front();
 	PyObject* module = PyModule_Create(&moduledef);
+	
+	whose_idea_was_this();
 
 	RETURN(module);
 }

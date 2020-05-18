@@ -35,5 +35,11 @@
     <ClInclude Include="..\src\util_py.h">
       <Filter>inc</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\cirkel2.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\circle_fitter2.h">
+      <Filter>inc</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

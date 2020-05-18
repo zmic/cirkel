@@ -105,5 +105,53 @@ struct circular_bufferA
 	const T* _begin;
 	const T* _end;
 	const T* _p;
+};
+
+
+template<class T>
+struct circular_bufferB
+{
+	circular_bufferB(const T* const begin, T delimiter, int Y, int X) :
+		_begin_begin(begin), _begin(begin), _end(begin + X), _p(begin), _Y(Y), _X(X), _delimiter(delimiter)
+	{}
+	void next_row()
+	{
+		int i = (_begin - _begin_begin) / _X;
+		i += 1;
+		if (i == _Y)
+		{
+			i = 0;
+		}
+		_begin = _begin_begin + i * _X;
+		_end = _begin + _X;
+		_p = _begin;
+	}
+	void operator++()
+	{
+		if (++_p == _end || *_p == _delimiter)
+		{
+			_p = _begin;
+		}
+	}
+	const T* operator++(int)
+	{
+		const T* v = _p;
+		if (++_p == _end || *_p == _delimiter)
+		{
+			_p = _begin;
+		}
+		return v;
+	}
+	double operator*()
+	{
+		return *_p;
+	}
+	const T* const _begin_begin;
+	T _delimiter;
+	int _Y;
+	int _X;
+	const T* _begin;
+	const T* _end;
+	const T* _p;
 
 };
