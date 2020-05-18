@@ -10,14 +10,12 @@ It's a Python module written in C++ that paints colored disks on a canvas, using
 Examples of what this program can produce can be found on 
 [my Flickr page](https://www.flickr.com/photos/66348526@N00/albums/72157665578003511)
 
-## How to install it (Windows only for now)
+## How to install it (Windows only)
 
 On Windows:
 `pip install cirkel`
 
-OR
-
-clone this repository, build the binary with Visual Studio 2017/2019 and run setup.py
+OR clone this repository, build the binary with Visual Studio 2017/2019 and run setup.py
 
 ## Disclaimer
 I wrote this code in a hurry during a two week period in 2014, for fun and quick experimentation. It was never refactored or cleaned up as it should be. It works, but does not meet my professional standards for deliverable source code.
