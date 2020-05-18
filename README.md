@@ -5,7 +5,7 @@
 <img src="https://raw.githubusercontent.com/zmic/cirkel/master/examples/test_0.jpg" width=400px height=400px>
 
 ## What is it?
-It's a Python module written in C++ that paints colored disks on a canvas, using an inscrutable automaton-like ruleset.
+It's a Python module written in C++ that paints colored disks on a canvas, using an inscrutable automaton-like ruleset that I dreamt up in november of 2014.
 
 Examples of what this program can produce can be found on 
 [my Flickr page](https://www.flickr.com/photos/66348526@N00/albums/72157665578003511)
@@ -18,7 +18,7 @@ On Windows:
 OR clone this repository, build the binary with Visual Studio 2017/2019 and run setup.py
 
 ## Disclaimer
-I wrote this code in a hurry during a two week period in 2014, for fun and quick experimentation. It was never refactored or cleaned up as it should be. It works, but does not meet my professional standards for deliverable source code.
+I wrote this code in a hurry back in 2014, for fun and quick experimentation. It was never refactored or cleaned up as it should be. It works, but does not meet my professional standards for deliverable source code.
 
 ## How to  use it
 Call `cirkel.cirkel1` with a pile of parameters and you will get back an image (as a numpy array). Finding the parameters that produce nice results, therein lies the art.
