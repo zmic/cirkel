@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <build_root>$(SolutionDir)..\_build\vs2017-$(Configuration)-$(PlatformShortName)\</build_root>  
+    <python_version>$(Configuration.Substring($([MSBuild]::Add($(Configuration.IndexOf('-')), 1))))</python_version>
+    <debug_or_release>$(Configuration.Substring(0, $(Configuration.IndexOf('-'))))</debug_or_release>
+    <underscore_d Condition="$(debug_or_release)=='Debug'">_d</underscore_d>  
+    <underscore_d Condition="$(debug_or_release)=='Release'"></underscore_d>      
+    <extension_basename>ccirkel</extension_basename>
+    <extension_fullname>$(extension_basename)_cp$(python_version)_$(PlatformShortName)</extension_fullname>      
+    <python_path Condition="$(python_version)=='30' and $(Platform)=='Win32'">c:\python30-32</python_path>
+    <python_path Condition="$(python_version)=='30' and $(Platform)=='x64'">c:\python30</python_path>
+    <python_path Condition="$(python_version)=='31' and $(Platform)=='Win32'">c:\python31-32</python_path>
+    <python_path Condition="$(python_version)=='31' and $(Platform)=='x64'">c:\python31</python_path>
+    <python_path Condition="$(python_version)=='32' and $(Platform)=='Win32'">c:\python32-32</python_path>
+    <python_path Condition="$(python_version)=='32' and $(Platform)=='x64'">c:\python32</python_path>
+    <python_path Condition="$(python_version)=='33' and $(Platform)=='Win32'">c:\python33-32</python_path>
+    <python_path Condition="$(python_version)=='33' and $(Platform)=='x64'">c:\python33</python_path>
+    <python_path Condition="$(python_version)=='34' and $(Platform)=='Win32'">c:\python34-32</python_path>
+    <python_path Condition="$(python_version)=='34' and $(Platform)=='x64'">c:\python34</python_path>
+    <python_path Condition="$(python_version)=='35' and $(Platform)=='Win32'">c:\python35-32</python_path>
+    <python_path Condition="$(python_version)=='35' and $(Platform)=='x64'">c:\python35</python_path>
+    <python_path Condition="$(python_version)=='36' and $(Platform)=='Win32'">c:\python36-32</python_path>
+    <python_path Condition="$(python_version)=='36' and $(Platform)=='x64'">c:\python36</python_path>
+    <python_path Condition="$(python_version)=='37' and $(Platform)=='Win32'">c:\python37-32</python_path>
+    <python_path Condition="$(python_version)=='37' and $(Platform)=='x64'">c:\python37</python_path>
+    <python_path Condition="$(python_version)=='38' and $(Platform)=='Win32'">c:\python38-32</python_path>
+    <python_path Condition="$(python_version)=='38' and $(Platform)=='x64'">c:\python38</python_path>    
+    <python_path Condition="$(python_version)=='39' and $(Platform)=='Win32'">c:\python39-32</python_path>
+    <python_path Condition="$(python_version)=='39' and $(Platform)=='x64'">c:\python39</python_path>    
+  </PropertyGroup> 
+  <PropertyGroup>
+    <TargetName>$(extension_fullname)$(underscore_d)</TargetName>
+    <TargetExt>.pyd</TargetExt>  
+    <IncludePath>$(python_path)\include;$(python_path)\Lib\site-packages\numpy\core\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(python_path)\libs;$(LibraryPath)</LibraryPath>
+    <OutDir>$(build_root)$(ProjectName)\</OutDir>
+    <IntDir>$(build_root)$(ProjectName)\i\</IntDir>        
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <PreprocessorDefinitions>MODULE_NAME=$(extension_basename);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>    
+  <ItemGroup>
+    <BuildMacro Include="extension_basename">
+      <Value>$(extension_basename)</Value>
+    </BuildMacro>
+    <BuildMacro Include="extension_fullname">
+      <Value>$(extension_fullname)</Value>
+    </BuildMacro>    
+  </ItemGroup>    
+</Project>
