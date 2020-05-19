@@ -2,10 +2,16 @@
 
 # CIRKEL
 
-<img src="https://raw.githubusercontent.com/zmic/cirkel/master/examples/test_0.jpg" width=400px height=400px>
+<table>
+<tr>
+<td><img src="https://raw.githubusercontent.com/zmic/cirkel/master/generated/example1.jpg" width=270px></td>
+<td><img src="https://raw.githubusercontent.com/zmic/cirkel/master/generated/example2.jpg" width=270px></td>
+<td><img src="https://raw.githubusercontent.com/zmic/cirkel/master/generated/example3.jpg" width=270px></td>
+</tr>
+</table>
 
 ## What is it?
-It's a Python module written in C++ that paints colored disks on a canvas, using an inscrutable automaton-like ruleset that I dreamt up in november of 2014.
+It's a Python module written in C++ that paints colored disks on a canvas, using an inscrutable automaton-like ruleset that I dreamt up in November of 2014.
 
 Examples of what this program can produce can be found on 
 [my Flickr page](https://www.flickr.com/photos/66348526@N00/albums/72157665578003511)
@@ -20,7 +26,7 @@ OR clone this repository, build the binary with Visual Studio 2017/2019 and run 
 ## How to  use it
 Call `cirkel.cirkel1` with a pile of parameters and you will get back an image (as a numpy array). Finding the parameters that produce nice results, therein lies the art.
 
-The following script should produce the image shown on this page:
+Here's an example that produces an image:
 
 ```
 import os
@@ -98,7 +104,7 @@ def example1():
     
     #--------------------------------------------------------------
     #      
-    #   We've got everyting, let's go
+    #   We've got everything, let's go
     # 
     image = cirkel.cirkel1(
         J, R, picture_output_size, 
