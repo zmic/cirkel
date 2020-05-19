@@ -119,6 +119,9 @@ if __name__ == '__main__':
     example1()
 ```
 
+There's also a second generation version `cirkel.cirkel2` with somewhat more parameters. See cirkel/examples/examples2.py on how to use it.
+
+
 ## Disclaimer
 I wrote this code in a hurry back in 2014, for fun and quick experimentation. It was never refactored or cleaned up as it should be. It works, but does not meet my professional standards for deliverable source code.
 
