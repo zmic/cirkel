@@ -11,7 +11,7 @@
 </table>
 
 ## What is it?
-It's a Python module written in C++ that paints colored disks on a canvas, using an inscrutable automaton-like ruleset that I dreamt up in November of 2014.
+It's a Python module written in C++ that paints colored disks on a canvas for aesthetic amusement. It uses an inscrutable automaton-like ruleset that I dreamt up in November of 2014.
 
 Examples of what this program can produce can be found on 
 [my Flickr page](https://www.flickr.com/photos/66348526@N00/albums/72157665578003511)
