@@ -3,13 +3,16 @@ import numpy as np
 import imageio
 import cirkel
 
+#-------------------------------------------------------------------------------------
+#
+#  an example of cirkel.cirkel2
+#
 def example_type2():    
 
-    # for reproducibility
-    
+    # for reproducibility    
     np.random.seed(32)
 
-    # An array of start points (x, y, angle). 4 in this example, but as many as you like.
+    # An array of start points (x, y, angle). 64 points in this example.
     S = []
     n = 8
     for x in range(n):
@@ -17,7 +20,7 @@ def example_type2():
             S.append((1/n*(.5+x),1/n*(.5+y),np.random.random()/10))
     S = np.array(S)
     
-    # 2d-array of instructions, either 0 or 1    
+    # 2d-array of "instructions", either 0 or 1    
     J = np.random.randint(0, 2, (2,2))
  
     # 2d-array of rotation angles in radians. Can be negative.
@@ -29,7 +32,7 @@ def example_type2():
         [20,50,10,15]
     ])
     
-    # branch array
+    # branch array, also angles
     B = np.random.randint(0,8,(2,4))*np.pi/2
     B[0][0] *= 0.98
     B[1][2] *= 1.02
@@ -45,8 +48,7 @@ def example_type2():
 
     # param2, integer
     param2 = 20
-    
-    
+        
     # Colors of the disks as (r,g,b)
     # Number of colors must be equal to stack size or bad things happen!
     RGB = (np.random.random((stack_size, 3))*256).astype(np.uint8)
