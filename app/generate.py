@@ -177,8 +177,8 @@ if __name__ == '__main__':
     
     for i in range(500):
         #vary_folder(L, good_folder)
-        #clone_folder(L, good_folder)
-        create_new_cirkel2(L)
+        clone_folder(L, good_folder)
+        #create_new_cirkel2(L)
 
 
 
