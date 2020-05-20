@@ -159,11 +159,11 @@ def create_graph(seed, seed2):
     B = ŋrandint(nrnd,0,8,(2,4))*np.pi/2
     
     B = B.slice_multiply[0,0:1,0.98]
-    B = B.slice_multiply[1,2:3,1.02]
+    B = B.slice_multiply[1,0:ŋintegers(nrnd2, 0, 3),1.02]
     
         
     # create 3072x3072 picture
-    picture_output_size = 3072
+    picture_output_size = ŋintegers(nrnd2, 2400, 3600)
     
     # max depth of the stack
     stack_size = 4 + ŋintegers(nrnd2, 0, 4)
