@@ -159,9 +159,9 @@ def clone_folder(L, folder):
         
               
 def create_new_cirkel2(L):       
-    seed1 = rnd.randint(0,1000000000)
-    seed2 = rnd.randint(0,1000000000)
-    seed3 = rnd.randint(0,1000000000)
+    seed1 = random.randint(0,1000000000)
+    seed2 = random.randint(0,1000000000)
+    seed3 = random.randint(0,1000000000)
     graph = create_cirkel2_graph_v1(seed1, seed2, seed3)        
     graph.eval()
     image = cirkel.cirkel2(*graph.r)
