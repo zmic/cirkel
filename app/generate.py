@@ -93,7 +93,11 @@ def read_metadata(path):
     return data
     #return znode_load(data['graph'])
     
-def read_folder(path, shuffle = True):
+def read_graph(path):    
+    data = read_metadata(path)
+    return data['graph']    
+    
+def walk_folder(path, shuffle = True):
     files = list(path.rglob("*.jpg"))
     if shuffle:
         random.shuffle(files)
@@ -260,9 +264,10 @@ def create_graph(seed):
 ######################################################################################################
 
 def vary_folder(L, folder):       
-    for x in read_folder(folder, False):
+    for x in walk_folder(folder, False):
         print(x)
         data = read_metadata(x)
+        graph = data['graph']
         graph = znode.load(data)
         #print(graph)
         nrnd = graph.find_first_of_type(ŋnp_RandomState)
@@ -273,10 +278,10 @@ def vary_folder(L, folder):
         save_image(L, image, graph_dump) 
         
 def clone_folder(L, folder):       
-    for x in read_folder(folder, False):
+    for x in walk_folder(folder, False):
         print("read:", x)        
-        data = read_metadata(x)
-        graph = znode.load(data)
+        graph = read_graph(x)
+        graph = znode.load(graph)
         #print(graph)
         graph.eval()
         image = cirkel.cirkel2(*graph.r)
