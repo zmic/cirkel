@@ -13,17 +13,23 @@ from znode import *
 import cirkel
 
 def do_git():
-    git_path = Path(__file__).absolute().parent.parent
-    print(git_path)
-    repo = Repo(git_path)
-    assert not repo.bare
-    if len(repo.index.diff(None)):
-        print("Committing...")
-        repo.git.commit('-a', '-m', 'autocommit', author='michael <michael@not.here.com>')
-    headcommit = repo.head.commit
-    return str(headcommit)
+    git_path1 = Path(__file__).absolute().parent.parent
+    git_path2 = git_path1.parent / 'znode'
+    def check_commit(gp):
+        print(gp)
+        repo = Repo(gp)
+        assert not repo.bare
+        changed_files = [ item.a_path for item in repo.index.diff(None) ]
+        if changed_files:
+            for x in changed_files:
+                print(x)
+            print("Committing...")
+            repo.git.commit('-a', '-m', 'autocommit', author='michael <michael@not.here.com>')
+        return str(repo.head.commit)
     
-commits = do_git()
+    return { 'cirkel':check_commit(git_path1), 'znode':check_commit(git_path2) }
+
+commits = do_git()  
 print(commits)
 xxx
 
