@@ -104,7 +104,7 @@ def read_folder(path, shuffle = True):
 def save_image(L, image, type, graph_dump):
     now = datetime.datetime.now() 
     now = now.strftime("%Y-%m-%d %H:%M:%S")
-    data = {
+    metadata = {
         'info' : {
             'type' : type,
             'created' : now,
@@ -112,11 +112,11 @@ def save_image(L, image, type, graph_dump):
         },
         'graph' : graph_dump
     }    
-    data = json.dumps(data)
+    metadata = json.dumps(metadata)
     stream = io.BytesIO()
     imageio.imwrite(stream, image, format='jpg')   
     imdata = stream.getvalue()        
-    imdata = set_image_data(imdata, bytes(graph_data, encoding='ascii'))
+    imdata = set_image_data(imdata, bytes(metadata, encoding='ascii'))
     folder = L()
     path = "{}/c_{}.jpg".format(folder, int(time.time()*100))
     print(path)
