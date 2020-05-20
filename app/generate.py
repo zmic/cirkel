@@ -209,7 +209,7 @@ def vary_folder(L, folder):
         graph.eval(debug=0)
         image = cirkel.cirkel2(*graph.r)
         graph_dump = graph.dump()
-        save_image(L, image, graph_dump) 
+        save_image(L, image, "cirkel.cirkel2", graph_dump) 
         
 def clone_folder(L, folder):       
     for x in walk_folder(folder, False):
