@@ -256,7 +256,6 @@ def create_graph(seed):
     return n_all
 
 ######################################################################################################
-
 def vary_folder():       
     folder = Path(r"F:\GEN\XC")
     L = layered_saver(r"F:\GEN\CIRKEL", 300)
@@ -267,8 +266,20 @@ def vary_folder():
         #print(graph)
         nrnd = graph.find_first_of_type(ŋnp_RandomState)
         print(nrnd[0].r)
-        #graph2 = create_graph(nrnd[0].r, random.randint(0,1000))
-        graph2.eval()
+        graph.eval()
+        image = cirkel.cirkel2(*graph2.r)
+        graph_dump = graph2.dump()
+        save_image(L, image, graph_dump) 
+        
+def clone_folder():       
+    folder = Path(r"F:\GEN\XC")
+    L = layered_saver(r"F:\GEN\CIRKEL", 300)
+    for x in read_folder(folder, False):
+        print(x)
+        data = read_metadata(x)
+        graph = znode.load(data)
+        #print(graph)
+        graph.eval()
         image = cirkel.cirkel2(*graph2.r)
         graph_dump = graph2.dump()
         save_image(L, image, graph_dump) 
@@ -288,7 +299,7 @@ if __name__ == '__main__':
     g_commits = do_git()  
     print("-------------------------------------------------------------------")
 
-    vary_folder()
+    clone_folder()
 
 
 
