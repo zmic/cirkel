@@ -12,16 +12,19 @@ from git import Repo
 from znode import *
 import cirkel
 
-
-git_path = Path(__file__).absolute().parent.parent
-print(git_path)
-repo = Repo(git_path)
-assert not repo.bare
-if len(repo.index.diff(None)):
-    print("Committing...")
-    repo.git.commit('-a', '-m', 'autocommit', author='michael <michael@not.here.com>')
-headcommit = repo.head.commit
-print(headcommit)
+def do_git():
+    git_path = Path(__file__).absolute().parent.parent
+    print(git_path)
+    repo = Repo(git_path)
+    assert not repo.bare
+    if len(repo.index.diff(None)):
+        print("Committing...")
+        repo.git.commit('-a', '-m', 'autocommit', author='michael <michael@not.here.com>')
+    headcommit = repo.head.commit
+    return str(headcommit)
+    
+commits = do_git()
+print(commits)
 xxx
 
 
