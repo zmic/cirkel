@@ -175,7 +175,7 @@ if __name__ == '__main__':
     good_folder = root_folder / "XK"
     L = layered_saver(root_folder / "GEN", 300)
     
-    for i in range(100):
+    for i in range(500):
         #vary_folder(L, good_folder)
         #clone_folder(L, good_folder)
         create_new_cirkel2(L)
