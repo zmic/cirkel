@@ -6,6 +6,7 @@ import numpy as np
 import imageio
 import exiv2
 import random
+import json
 from pathlib import Path
 from znode import *
 import cirkel
@@ -76,7 +77,18 @@ def read_folder(path, shuffle = True):
     for x in files:
         yield x
                 
-def save_image(L, image, graph_data):
+                
+def save_image(L, image, graph):
+
+    data = graph.dump()
+    data = {
+        'info' : {
+            
+        }
+        'graph' : data
+    }
+    
+    data = json.dumps(data)
     stream = io.BytesIO()
     imageio.imwrite(stream, image, format='jpg')   
     imdata = stream.getvalue()        
@@ -174,14 +186,15 @@ def vary_folder():
         save_image(L, image, graph_dump) 
         '''
         
+        
+        
 def generate_new():       
     L = layered_saver(r"F:\GEN\CIRKEL", 300)
     for i in range(1000,2000):
         graph = create_graph(i)        
         graph.eval()
         image = cirkel.cirkel2(*graph.r)
-        graph_dump = n_all.json_dumps()
-        save_image(L, image, graph_dump) 
+        save_image(L, image, graph) 
 
 
         
