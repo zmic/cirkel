@@ -20,6 +20,8 @@ assert not repo.bare
 if len(repo.index.diff(None)):
     print("Committing...")
     repo.git.commit('-a', '-m', 'autocommit', author='michael <michael@not.here.com>')
+headcommit = repo.head.commit
+print(headcommit)
 xxx
 
 
