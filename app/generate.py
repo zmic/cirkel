@@ -166,7 +166,7 @@ def create_graph(seed, seed2):
     picture_output_size = 3072
     
     # max depth of the stack
-    stack_size = 4 + ŋintegers(nrnd2, 0, 4, (1,))
+    stack_size = 4 + ŋintegers(nrnd2, 0, 4)
     
     # param1, integer
     param1 = 1
