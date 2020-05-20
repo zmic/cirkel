@@ -258,9 +258,8 @@ def create_graph(seed):
     return n_all
 
 ######################################################################################################
-def vary_folder():       
-    folder = Path(r"F:\GEN\XC")
-    L = layered_saver(r"F:\GEN\CIRKEL", 300)
+
+def vary_folder(L, folder):       
     for x in read_folder(folder, False):
         print(x)
         data = read_metadata(x)
@@ -273,9 +272,7 @@ def vary_folder():
         graph_dump = graph2.dump()
         save_image(L, image, graph_dump) 
         
-def clone_folder():       
-    folder = Path(r"F:\GEN\XC")
-    L = layered_saver(r"F:\GEN\CIRKEL", 300)
+def clone_folder(L, folder):       
     for x in read_folder(folder, False):
         print("read:", x)        
         data = read_metadata(x)
@@ -289,8 +286,7 @@ def clone_folder():
         
         
         
-def generate_new():       
-    L = layered_saver(r"F:\GEN\CIRKEL", 300)
+def generate_new(root_folder):       
     for i in range(1000,2000):
         graph = create_graph(i)        
         graph.eval()
@@ -302,7 +298,10 @@ if __name__ == '__main__':
     g_commits = do_git()  
     print("-------------------------------------------------------------------")
 
-    clone_folder()
+    root_folder = Path(r"f:/gen/cirkel")
+    good_folder = root_folder / "XK"
+    L = layered_saver(root_folder / "GEN", 300)
+    clone_folder(L, good_folder)
 
 
 
