@@ -152,9 +152,9 @@ def create_graph(seed, seed2):
     # 2d-array of diameters (integers > 0)
     d1 = random.randint(40,60)
     L1 = [50,60,50,50]
-    L1[random.randint(0,3)] = random.randint(30,80)
+    L1[random.randint(0,3)] = random.randint(10,80)
     L2 = [20,50,10,15]
-    L2[random.randint(0,3)] = random.randint(30,80)
+    L2[random.randint(0,3)] = random.randint(10,80)
     D = ŋnp_array((
         L1,
         L2
