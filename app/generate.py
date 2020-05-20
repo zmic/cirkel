@@ -107,7 +107,8 @@ def walk_folder(path, shuffle = True):
         yield x
                 
                 
-def save_image(L, image, type, graph_dump):
+def save_image(L, image, type, graph):
+    graph_dump = graph.dump()
     now = datetime.datetime.now() 
     now = now.strftime("%Y-%m-%d %H:%M:%S")
     metadata = {
@@ -142,8 +143,7 @@ def vary_folder(L, folder):
         graph = create_graph(nrnd[0].r, random.randint(0,1000000000))
         graph.eval(debug=0)
         image = cirkel.cirkel2(*graph.r)
-        graph_dump = graph.dump()
-        save_image(L, image, "cirkel.cirkel2", graph_dump) 
+        save_image(L, image, "cirkel.cirkel2", graph) 
         
 def clone_folder(L, folder):       
     for x in walk_folder(folder, False):
@@ -153,9 +153,8 @@ def clone_folder(L, folder):
         #print(graph)
         graph.eval()
         image = cirkel.cirkel2(*graph.r)
-        graph_dump = graph.dump()
         print("write:", x)        
-        save_image(L, image, "cirkel.cirkel2", graph_dump) 
+        save_image(L, image, "cirkel.cirkel2", graph) 
         
               
 def create_new_cirkel2(L):       
