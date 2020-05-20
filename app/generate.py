@@ -102,7 +102,7 @@ def read_folder(path, shuffle = True):
                 
                 
 def save_image(L, image, type, graph_dump):
-    now = datetime.now() 
+    now = datetime.datetime.now() 
     now = now.strftime("%Y-%m-%d %H:%M:%S")
     data = {
         'info' : {
