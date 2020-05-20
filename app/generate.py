@@ -205,8 +205,7 @@ def vary_folder(L, folder):
         graph = znode.load(data)
         nrnd = graph.find_first_of_type(ŋnp_RandomState)
         print(nrnd[0].r)
-        return
-        graph = create_graph(i, j)                
+        graph = create_graph(nrnd[0].r, random.randint(0,1000000000))
         graph.eval()
         image = cirkel.cirkel2(*graph2.r)
         graph_dump = graph2.dump()
