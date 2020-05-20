@@ -206,7 +206,7 @@ def vary_folder(L, folder):
         nrnd = graph.find_first_of_type(ŋnp_RandomState)
         print(nrnd[0].r)
         graph = create_graph(nrnd[0].r, random.randint(0,1000000000))
-        graph.eval()
+        graph.eval(debug=1)
         image = cirkel.cirkel2(*graph2.r)
         graph_dump = graph2.dump()
         save_image(L, image, graph_dump) 
