@@ -101,11 +101,12 @@ def read_folder(path, shuffle = True):
         yield x
                 
                 
-def save_image(L, image, graph_dump):
+def save_image(L, image, type, graph_dump):
     now = datetime.now() 
     now = now.strftime("%Y-%m-%d %H:%M:%S")
     data = {
         'info' : {
+            'type' : type,
             'created' : now,
             'version' : g_commits
         },
@@ -120,6 +121,7 @@ def save_image(L, image, graph_dump):
     path = "{}/c_{}.jpg".format(folder, int(time.time()*100))
     print(path)
     open(path, "wb").write(imdata) 
+    return path
     
 #####################################################################################################    
 
@@ -275,14 +277,15 @@ def clone_folder():
     folder = Path(r"F:\GEN\XC")
     L = layered_saver(r"F:\GEN\CIRKEL", 300)
     for x in read_folder(folder, False):
-        print(x)
+        print("read:", x)        
         data = read_metadata(x)
         graph = znode.load(data)
         #print(graph)
         graph.eval()
-        image = cirkel.cirkel2(*graph2.r)
-        graph_dump = graph2.dump()
-        save_image(L, image, graph_dump) 
+        image = cirkel.cirkel2(*graph.r)
+        graph_dump = graph.dump()
+        print("write:", x)        
+        save_image(L, image, "cirkel.cirkel2", graph_dump) 
         
         
         
