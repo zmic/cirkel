@@ -2,6 +2,7 @@ import os
 import re
 import io
 import time
+import datetime
 import numpy as np
 import imageio
 import exiv2
@@ -68,7 +69,7 @@ class layered_saver:
     
 #####################################################################################################    
 
-def set_image_data(im, data):
+def set_image_data(im, data):        
     data = json.dumps(data)
     im = exiv2.ImageFactory.open(im)
     im.readMetadata()
@@ -100,16 +101,16 @@ def read_folder(path, shuffle = True):
         yield x
                 
                 
-def save_image(L, image, graph):
-
-    data = graph.dump()
+def save_image(L, image, graph_dump):
+    now = datetime.now() 
+    now = now.strftime("%Y-%m-%d %H:%M:%S")
     data = {
         'info' : {
-            g_commits
+            'created' : now,
+            'version' : g_commits
         },
-        'graph' : data
-    }
-    
+        'graph' : graph_dump
+    }    
     data = json.dumps(data)
     stream = io.BytesIO()
     imageio.imwrite(stream, image, format='jpg')   
@@ -267,12 +268,10 @@ def vary_folder():
         nrnd = graph.find_first_of_type(ŋnp_RandomState)
         print(nrnd[0].r)
         #graph2 = create_graph(nrnd[0].r, random.randint(0,1000))
-        '''
         graph2.eval()
         image = cirkel.cirkel2(*graph2.r)
-        graph_dump = graph2.json_dumps()
+        graph_dump = graph2.dump()
         save_image(L, image, graph_dump) 
-        '''
         
         
         
