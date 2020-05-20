@@ -150,8 +150,9 @@ def create_graph(seed, seed2):
     R = ŋrandint(nrnd,0,8,(4,4))*np.pi/4
 
     # 2d-array of diameters (integers > 0)
+    d1 = random.randint(40,60)
     D = ŋnp_array((
-        (50,60,50,50),
+        (d1,60,50,50),
         (20,50,10,15)
     ))
     
