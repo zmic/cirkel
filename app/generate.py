@@ -89,7 +89,6 @@ def read_metadata(path):
     ipc_data = image.iptcData()
     jsondata = ipc_data[b"Iptc.Application2.Caption"].toString().decode('ascii')
     data = json.loads(jsondata)
-    print(jsondata)
     return data
     #return znode_load(data['graph'])
     
