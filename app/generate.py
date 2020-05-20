@@ -202,13 +202,13 @@ def vary_folder(L, folder):
     for x in walk_folder(folder, False):
         print(x)
         data = read_graph(x)
-        graph = znode.load(data)
-        nrnd = graph.find_first_of_type(ŋnp_RandomState)
+        old_graph = znode.load(data)
+        nrnd = old_graph.find_first_of_type(ŋnp_RandomState)
         print(nrnd[0].r)
         graph = create_graph(nrnd[0].r, random.randint(0,1000000000))
-        graph.eval(debug=1)
-        image = cirkel.cirkel2(*graph2.r)
-        graph_dump = graph2.dump()
+        graph.eval(debug=0)
+        image = cirkel.cirkel2(*graph.r)
+        graph_dump = graph.dump()
         save_image(L, image, graph_dump) 
         
 def clone_folder(L, folder):       
