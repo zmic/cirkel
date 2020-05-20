@@ -21,6 +21,7 @@ if len(repo.index.diff(None)):
     repo.git.commit('-a', '-m', 'autocommit', author='michael <michael@not.here.com>')
 xxx
 
+
 ##############################################################################################################################
 class layered_saver:
     def __init__( self, root, nbr_per_folder ):
