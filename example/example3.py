@@ -4,13 +4,8 @@ import imageio
 from znode import *
 import cirkel
 
-#-------------------------------------------------------------------------------------
-#
-#  an example of cirkel.cirkel2
-#
-def example_type3():    
-    
-    nrnd = ŋnp_RandomState(32)
+def create_parameters(seed):
+    nrnd = ŋnp_RandomState(seed)
     
     # An array of start points (x, y, angle). 64 points in this example.
     i = 8
@@ -73,24 +68,28 @@ def example_type3():
     )
     
     n_all.eval()
-    
-    #--------------------------------------------------------------
-    #      
-    #   We've got everything, let's go
-    # 
-    image = cirkel.cirkel2(*n_all.r)
-    
-    # should be (3, 3072, 3072)    
-    print(image.shape)   
+    return n_all.r
 
+#-------------------------------------------------------------------------------------
+def example3():       
+    params = create_parameters(32)
+    image = cirkel.cirkel2(*params)    
+    print(image.shape)   
     # save picture do disk
-    imageio.imwrite("test2.jpg", image)
-    
+    imageio.imwrite("test2.jpg", image)    
     os.system("test2.jpg")
-            
-    
+        
+def example4():       
+    for i in range(1,1000):
+        params = create_parameters(i)
+        image = cirkel.cirkel2(*params)    
+        print(image.shape)   
+        # save picture do disk
+        imageio.imwrite("test_{:05d}.jpg".format(i), image)    
+
 if __name__ == '__main__':
-    example_type3()
+    example3()
+    #example4()
     
     
     
