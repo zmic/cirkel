@@ -18,6 +18,7 @@ print(git_path)
 repo = Repo(git_path)
 assert not repo.bare
 if len(repo.index.diff(None)):
+    print("Committing...")
     repo.git.commit('-a', '-m', 'autocommit', author='michael <michael@not.here.com>')
 xxx
 
