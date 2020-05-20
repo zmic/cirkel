@@ -15,7 +15,7 @@ import znode
 from znode import *
 import cirkel
 
-from graph_creator import create_cirkel2_graph_v1
+from graph_creator import create_cirkel2_graph_v1, vary_cirkel2_graph_v1
 
 def do_git():
     git_path1 = Path(__file__).absolute().parent.parent
@@ -138,9 +138,7 @@ def vary_folder(L, folder):
         print(x)
         data = read_graph(x)
         old_graph = znode.load(data)
-        nrnd = old_graph.find_first_of_type(ŋnp_RandomState)
-        print(nrnd[0].r)
-        graph = create_graph(nrnd[0].r, random.randint(0,1000000000))
+        graph = vary_cirkel2_graph_v1(old_graph)
         graph.eval(debug=0)
         image = cirkel.cirkel2(*graph.r)
         save_image(L, image, "cirkel.cirkel2", graph) 
@@ -176,8 +174,8 @@ if __name__ == '__main__':
     L = layered_saver(root_folder / "GEN", 300)
     
     for i in range(500):
-        #vary_folder(L, good_folder)
-        clone_folder(L, good_folder)
+        vary_folder(L, good_folder)
+        #clone_folder(L, good_folder)
         #create_new_cirkel2(L)
 
 
