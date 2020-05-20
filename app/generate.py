@@ -8,9 +8,18 @@ import exiv2
 import random
 import json
 from pathlib import Path
+from git import Repo
 from znode import *
 import cirkel
 
+
+git_path = Path(__file__).absolute().parent.parent
+print(git_path)
+repo = Repo(git_path)
+assert not repo.bare
+if len(repo.index.diff(None)):
+    repo.git.commit('-a', '-m', 'autocommit', author='michael <michael@not.here.com>')
+xxx
 
 ##############################################################################################################################
 class layered_saver:
@@ -84,7 +93,7 @@ def save_image(L, image, graph):
     data = {
         'info' : {
             
-        }
+        },
         'graph' : data
     }
     
