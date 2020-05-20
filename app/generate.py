@@ -263,8 +263,8 @@ def vary_folder():
     for x in read_folder(folder, False):
         print(x)
         data = read_metadata(x)
-        print(data)
         graph = znode.load(data)
+        print(graph)
         #nrnd = graph.find_first_of_type(ŋnp_RandomState)
         #print(nrnd[0].r)
         #graph2 = create_graph(nrnd[0].r, random.randint(0,1000))
