@@ -36,7 +36,7 @@ def do_git():
 ##############################################################################################################################
 class layered_saver:
     def __init__( self, root, nbr_per_folder ):
-        self.root = root
+        self.root = str(root)
         self.nbr_per_folder = nbr_per_folder
         self.boot()
     def set(self, hif, lof):
