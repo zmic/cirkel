@@ -153,7 +153,7 @@ def create_graph(seed, seed2):
     d1 = random.randint(40,60)
     D = ŋnp_array((
         [d1,60,50,50],
-        (20,50,10,15)
+        [20,50,10,15]
     ))
     
     # branch array, also angles
