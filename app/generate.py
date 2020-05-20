@@ -134,7 +134,7 @@ def create_graph(seed, seed2):
     nrnd2 = ŋrg_MT19937(seed2)
     
     # An array of start points (x, y, angle). 64 points in this example.
-    i = 6 + ŋintegers(nrnd2, 0, 4, (1,))
+    i = 6 + ŋintegers(nrnd2, 0, 4)
     nxy = ŋnp_transpose(ŋnp_indices((i,i)), (1,2,0))
     nxy = (1/i)*(nxy+0.5)
     nxy = ŋnp_reshape(nxy, (i*i,2))
