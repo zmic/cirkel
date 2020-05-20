@@ -195,83 +195,18 @@ def create_graph(seed, seed2):
         
     return n_all
 
-def create_graph(seed):
-    nrnd = ŋnp_RandomState(seed)
-    
-    # An array of start points (x, y, angle). 64 points in this example.
-    i = 8
-    nxy = ŋnp_transpose(ŋnp_indices((i,i)), (1,2,0))
-    nxy = (1/i)*(nxy+0.5)
-    nxy = ŋnp_reshape(nxy, (i*i,2))
-        
-    na = ŋrandom(nrnd, (i*i,1)) / 10
-    S = ŋnp_concatenate((nxy, na), 1)
-    S = ŋnp_ascontiguousarray(S)
-        
-    # 2d-array of "instructions", either 0 or 1    
-    J = ŋrandint(nrnd, 0, 2, (2,2))
- 
-    # 2d-array of rotation angles in radians. Can be negative.
-    R = ŋrandint(nrnd,0,8,(4,4))*np.pi/4
-
-    # 2d-array of diameters (integers > 0)
-    D = ŋnp_array((
-        (50,60,50,50),
-        (20,50,10,15)
-    ))
-    
-    # branch array, also angles
-    B = ŋrandint(nrnd,0,8,(2,4))*np.pi/2
-    
-    B = B.slice_multiply[0,0:1,0.98]
-    B = B.slice_multiply[1,2:3,1.02]
-    
-        
-    # create 3072x3072 picture
-    picture_output_size = 3072
-    
-    # max depth of the stack
-    stack_size = 6
-    
-    # param1, integer
-    param1 = 1
-
-    # param2, integer
-    param2 = 20
-        
-    # Colors of the disks as (r,g,b)
-    # Number of colors must be equal to stack size or bad things happen!
-    RGB = (ŋrandom(nrnd, (stack_size, 3))*256).astype(np.uint8)
-
-    # number of RGB_INCREMENT must be equal to stack size!
-    RGB_INCREMENT = (ŋrandn(nrnd, stack_size, 3)*10).astype(np.uint8)
-
-    r_background = 0
-    g_background = 0
-    b_background = 23
-    
-    n_all = ŋtuple(
-        S, J, R, D, B,
-        picture_output_size, 
-        stack_size, 
-        param1, param2,
-        RGB, RGB_INCREMENT, r_background, g_background, b_background
-    )
-    
-    n_all.eval()
-    return n_all
 
 ######################################################################################################
 
 def vary_folder(L, folder):       
     for x in walk_folder(folder, False):
         print(x)
-        data = read_metadata(x)
-        graph = data['graph']
+        data = read_graph(x)
         graph = znode.load(data)
-        #print(graph)
         nrnd = graph.find_first_of_type(ŋnp_RandomState)
         print(nrnd[0].r)
+        return
+        graph = create_graph(i, j)                
         graph.eval()
         image = cirkel.cirkel2(*graph2.r)
         graph_dump = graph2.dump()
@@ -292,11 +227,12 @@ def clone_folder(L, folder):
         
         
 def generate_new(root_folder):       
-    for i in range(1000,2000):
-        graph = create_graph(i)        
-        graph.eval()
-        image = cirkel.cirkel2(*graph.r)
-        save_image(L, image, graph) 
+    for i in range(1000,200):
+        for i in range(100,200):
+            graph = create_graph(i, j)        
+            graph.eval()
+            image = cirkel.cirkel2(*graph.r)
+            save_image(L, image, graph) 
 
 if __name__ == '__main__':
     print("-------------------------------------------------------------------")
@@ -306,7 +242,9 @@ if __name__ == '__main__':
     root_folder = Path(r"f:/gen/cirkel")
     good_folder = root_folder / "XK"
     L = layered_saver(root_folder / "GEN", 300)
-    clone_folder(L, good_folder)
+    
+    vary_folder(L, good_folder)
+    #clone_folder(L, good_folder)
 
 
 
