@@ -15,6 +15,8 @@ import znode
 from znode import *
 import cirkel
 
+from graph_creator import create_cirkel2_graph_v1
+
 def do_git():
     git_path1 = Path(__file__).absolute().parent.parent
     git_path2 = git_path1.parent / 'znode'
@@ -127,79 +129,6 @@ def save_image(L, image, type, graph_dump):
     open(path, "wb").write(imdata) 
     return path
     
-#####################################################################################################    
-
-def create_graph(seed, seed2):
-    nrnd = ŋnp_RandomState(seed)
-    nrnd2 = ŋrg_MT19937(seed2)
-    
-    # An array of start points (x, y, angle). 64 points in this example.
-    i = 6 + ŋintegers(nrnd2, 0, 4)
-    nxy = ŋnp_transpose(ŋnp_indices((i,i)), (1,2,0))
-    nxy = (1/i)*(nxy+0.5)
-    nxy = ŋnp_reshape(nxy, (i*i,2))
-        
-    na = ŋrandom(nrnd, (i*i,1)) / 10
-    S = ŋnp_concatenate((nxy, na), 1)
-    S = ŋnp_ascontiguousarray(S)
-        
-    # 2d-array of "instructions", either 0 or 1    
-    J = ŋrandint(nrnd, 0, 2, (2,2))
- 
-    # 2d-array of rotation angles in radians. Can be negative.
-    R = ŋrandint(nrnd,0,8,(4,4))*np.pi/4
-
-    # 2d-array of diameters (integers > 0)
-    d1 = random.randint(40,60)
-    L1 = [50,60,50,50]
-    L1[random.randint(0,3)] = random.randint(10,80)
-    L2 = [20,50,10,15]
-    L2[random.randint(0,3)] = random.randint(10,80)
-    D = ŋnp_array((
-        L1,
-        L2
-    ))
-    
-    # branch array, also angles
-    B = ŋrandint(nrnd,0,8,(2,4))*np.pi/2
-    
-    B = B.slice_multiply[0,0:1,0.98]
-    B = B.slice_multiply[1,0:ŋintegers(nrnd2, 0, 3),1 + ŋrandn(nrnd2)/10]
-    
-        
-    # create 3072x3072 picture
-    picture_output_size = ŋintegers(nrnd2, 2400, 3600)
-    
-    # max depth of the stack
-    stack_size = 4 + ŋintegers(nrnd2, 0, 4)
-    
-    # param1, integer
-    param1 = 1
-
-    # param2, integer
-    param2 = 20
-        
-    # Colors of the disks as (r,g,b)
-    # Number of colors must be equal to stack size or bad things happen!
-    RGB = (ŋrandom(nrnd, (stack_size, 3))*256).astype(np.uint8)
-
-    # number of RGB_INCREMENT must be equal to stack size!
-    RGB_INCREMENT = (ŋrandn(nrnd, stack_size, 3)*10).astype(np.uint8)
-
-    r_background = 0
-    g_background = 0
-    b_background = 23
-    
-    n_all = ŋtuple(
-        S, J, R, D, B,
-        picture_output_size, 
-        stack_size, 
-        param1, param2,
-        RGB, RGB_INCREMENT, r_background, g_background, b_background
-    )
-        
-    return n_all
-
 
 ######################################################################################################
 
@@ -228,15 +157,15 @@ def clone_folder(L, folder):
         print("write:", x)        
         save_image(L, image, "cirkel.cirkel2", graph_dump) 
         
-        
-        
-def generate_new(root_folder):       
-    for i in range(1000,200):
-        for i in range(100,200):
-            graph = create_graph(i, j)        
-            graph.eval()
-            image = cirkel.cirkel2(*graph.r)
-            save_image(L, image, graph) 
+              
+def create_new_cirkel2(L):       
+    seed1 = rnd.randint(0,1000000000)
+    seed2 = rnd.randint(0,1000000000)
+    seed3 = rnd.randint(0,1000000000)
+    graph = create_cirkel2_graph_v1(seed1, seed2, seed3)        
+    graph.eval()
+    image = cirkel.cirkel2(*graph.r)
+    save_image(L, image, "cirkel.cirkel2", graph) 
 
 if __name__ == '__main__':
     print("-------------------------------------------------------------------")
@@ -249,7 +178,8 @@ if __name__ == '__main__':
     
     for i in range(100):
         vary_folder(L, good_folder)
-    #clone_folder(L, good_folder)
+        #clone_folder(L, good_folder)
+        create_new_cirkel2(L)
 
 
 
