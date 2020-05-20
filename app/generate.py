@@ -159,7 +159,7 @@ def create_graph(seed, seed2):
     B = ŋrandint(nrnd,0,8,(2,4))*np.pi/2
     
     B = B.slice_multiply[0,0:1,0.98]
-    B = B.slice_multiply[1,0:ŋintegers(nrnd2, 0, 3),1.02]
+    B = B.slice_multiply[1,0:ŋintegers(nrnd2, 0, 3),1 + ŋrandn(nrnd2)/10]
     
         
     # create 3072x3072 picture
