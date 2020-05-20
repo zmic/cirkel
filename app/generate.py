@@ -13,7 +13,6 @@ from znode import *
 import cirkel
 
 def do_git():
-    print("-------------------------------------------------------------------")
     git_path1 = Path(__file__).absolute().parent.parent
     git_path2 = git_path1.parent / 'znode'
     def check_commit(gp):
@@ -27,10 +26,12 @@ def do_git():
             print("    Committing...")
             repo.git.commit('-a', '-m', 'autocommit', author='michael <michael@not.here.com>')
         return str(repo.head.commit)    
-    print("-------------------------------------------------------------------")
     return { 'cirkel':check_commit(git_path1), 'znode':check_commit(git_path2) }
 
+print("-------------------------------------------------------------------")
 commits = do_git()  
+print("-------------------------------------------------------------------")
+
 print(commits)
 xxx
 
