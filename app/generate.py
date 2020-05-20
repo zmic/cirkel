@@ -70,7 +70,7 @@ class layered_saver:
 #####################################################################################################    
 
 def set_image_data(im, data):        
-    data = json.dumps(data)
+    data = json.dumps(data).encode('ascii')
     im = exiv2.ImageFactory.open(im)
     im.readMetadata()
 
@@ -112,11 +112,11 @@ def save_image(L, image, type, graph_dump):
         },
         'graph' : graph_dump
     }    
-    metadata = json.dumps(metadata)
+    
     stream = io.BytesIO()
     imageio.imwrite(stream, image, format='jpg')   
     imdata = stream.getvalue()        
-    imdata = set_image_data(imdata, bytes(metadata, encoding='ascii'))
+    imdata = set_image_data(imdata, metadata)
     folder = L()
     path = "{}/c_{}.jpg".format(folder, int(time.time()*100))
     print(path)
