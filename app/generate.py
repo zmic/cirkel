@@ -8,6 +8,7 @@ import imageio
 import exiv2
 import random
 import json
+import hashlib
 from pathlib import Path
 from git import Repo
 from znode import *
@@ -108,6 +109,12 @@ def walk_folder(path, shuffle = True):
                 
                 
 def save_image(L, image, type, graph):
+    h = hashlib.sha1(image.tobytes())
+    if h in H:
+        print("already exists")
+        return
+    H.add(h)
+
     graph_dump = graph.dump()
     now = datetime.datetime.now() 
     now = now.strftime("%Y-%m-%d %H:%M:%S")
@@ -161,11 +168,6 @@ def create_new_cirkel2(L):
     graph = create_cirkel2_graph_v1(seed1, seed2, seed3)        
     graph.eval()
     image = cirkel.cirkel2(*graph.r)
-    h = hashlib.sha1(image.tobytes())
-    if h in H:
-        print("already exists")
-        return
-    H.add(h)
     save_image(L, image, "cirkel.cirkel2", graph) 
 
 if __name__ == '__main__':
@@ -179,9 +181,9 @@ if __name__ == '__main__':
     L = layered_saver(root_folder / "GEN", 300)
     
     for i in range(500):
-        #vary_folder(L, good_folder)
+        vary_folder(L, good_folder)
         #clone_folder(L, good_folder)
-        create_new_cirkel2(L)
+        #create_new_cirkel2(L)
 
 
 
