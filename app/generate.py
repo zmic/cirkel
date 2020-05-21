@@ -154,7 +154,6 @@ def clone_folder(L, folder):
         print("write:", x)        
         save_image(L, image, "cirkel.cirkel2", graph) 
         
-              
 def create_new_cirkel2(L):       
     seed1 = random.randint(0,1000000000)
     seed2 = random.randint(0,1000000000)
@@ -162,13 +161,19 @@ def create_new_cirkel2(L):
     graph = create_cirkel2_graph_v1(seed1, seed2, seed3)        
     graph.eval()
     image = cirkel.cirkel2(*graph.r)
+    h = hashlib.sha1(image.tobytes())
+    if h in H:
+        print("already exists")
+        return
+    H.add(h)
     save_image(L, image, "cirkel.cirkel2", graph) 
 
 if __name__ == '__main__':
     print("-------------------------------------------------------------------")
     g_commits = do_git()  
     print("-------------------------------------------------------------------")
-
+    H = set()
+    
     root_folder = Path(r"f:/gen/cirkel")
     good_folder = root_folder / "XK"
     L = layered_saver(root_folder / "GEN", 300)
