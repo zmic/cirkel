@@ -92,15 +92,14 @@ def read_metadata(path):
     image.readMetadata()
     ipc_data = image.iptcData()
     jsondata = ipc_data[b"Iptc.Application2.Caption"].toString().decode('ascii')
+    data = data.replace('ŋnp_', 'ŋp_')    
     data = json.loads(jsondata)
     return data
     #return znode_load(data['graph'])
     
 def read_graph(path):    
     data = read_metadata(path)
-    data = data['graph']    
-    data = data.replace('ŋnp_', 'ŋp_add')
-    return data
+    return data['graph']    
     
 def walk_folder(path, shuffle = True):
     files = list(path.rglob("*.jpg"))
