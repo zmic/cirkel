@@ -171,6 +171,13 @@ def create_new_cirkel2(L):
     image = cirkel.cirkel2(*graph.r)
     save_image(L, image, "cirkel.cirkel2", graph) 
 
+
+def vary_one():    
+    path = r"F:\GEN\CIRKEL\XK\c_159002192366.jpg"
+    m = read_metadata(path)
+    print(m)
+    
+    
 if __name__ == '__main__':
     print("-------------------------------------------------------------------")
     g_commits = do_git()  
@@ -181,11 +188,12 @@ if __name__ == '__main__':
     good_folder = root_folder / "XK"
     L = layered_saver(root_folder / "GEN", 300)
     
-    for i in range(500):
+    for i in range(1):
         #vary_folder(L, good_folder)
-        clone_folder(L, good_folder)
+        #clone_folder(L, good_folder)
         #create_new_cirkel2(L)
-
+        vary_one()
+        
 
 
 
