@@ -98,7 +98,9 @@ def read_metadata(path):
     
 def read_graph(path):    
     data = read_metadata(path)
-    return data['graph']    
+    data = data['graph']    
+    data = data.replace('ŋnp_', 'ŋp_add')
+    return data
     
 def walk_folder(path, shuffle = True):
     files = list(path.rglob("*.jpg"))
