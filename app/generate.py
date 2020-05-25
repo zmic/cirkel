@@ -175,7 +175,7 @@ def create_new_cirkel2(L):
 def vary_folder2(L, folder):       
     for x in walk_folder(folder, True):
         print(x)
-        vary_one(L, x)
+        vary_one(L, x, 3)
         
 def vary_one(L, path, iterations = 1):    
     #path = r"F:\GEN\CIRKEL\XK\c_159002192366.jpg"
