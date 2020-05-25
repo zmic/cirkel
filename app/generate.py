@@ -184,12 +184,14 @@ def vary_one(L):
                 if random.random() < .1:
                     x[1][0] += 1
                     changes += 1
-        if changes:
-            graph = znode.load(graph)
-            graph.eval()
-            image = cirkel.cirkel2(*graph.r)
-            save_image(L, image, "cirkel.cirkel2", graph) 
-    
+        try:
+            if changes:
+                graph = znode.load(graph)
+                graph.eval()
+                image = cirkel.cirkel2(*graph.r)
+                save_image(L, image, "cirkel.cirkel2", graph) 
+        except IndexError:
+            continue
     
 if __name__ == '__main__':
     print("-------------------------------------------------------------------")
