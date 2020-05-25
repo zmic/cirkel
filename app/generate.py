@@ -9,6 +9,7 @@ import exiv2
 import random
 import json
 import hashlib
+import copy
 from pathlib import Path
 from git import Repo
 from znode import *
@@ -174,18 +175,20 @@ def create_new_cirkel2(L):
 
 def vary_one(L):    
     path = r"F:\GEN\CIRKEL\XK\c_159002192366.jpg"
-    graph = read_graph(path)
-    changes = 0
-    for x in graph:
-        if x[0] == 'ŋint':
-            if random.random() < .1:
-                x[1][0] += 1
-                changes += 1
-    if changes:
-        graph = znode.load(graph)
-        graph.eval()
-        image = cirkel.cirkel2(*graph.r)
-        save_image(L, image, "cirkel.cirkel2", graph) 
+    graph_original = read_graph(path)
+    for i in range(500):
+        changes = 0    
+        graph = copy.deepcopy(graph_original)
+        for x in graph:
+            if x[0] == 'ŋint':
+                if random.random() < .1:
+                    x[1][0] += 1
+                    changes += 1
+        if changes:
+            graph = znode.load(graph)
+            graph.eval()
+            image = cirkel.cirkel2(*graph.r)
+            save_image(L, image, "cirkel.cirkel2", graph) 
     
     
 if __name__ == '__main__':
