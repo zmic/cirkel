@@ -172,11 +172,15 @@ def create_new_cirkel2(L):
     image = cirkel.cirkel2(*graph.r)
     save_image(L, image, "cirkel.cirkel2", graph) 
 
-
-def vary_one(L):    
-    path = r"F:\GEN\CIRKEL\XK\c_159002192366.jpg"
+def vary_folder2(L, folder):       
+    for x in walk_folder(folder, True):
+        print(x)
+        vary_one(L, x)
+        
+def vary_one(L, path, iterations = 1):    
+    #path = r"F:\GEN\CIRKEL\XK\c_159002192366.jpg"
     graph_original = read_graph(path)
-    for i in range(500):
+    for i in range(iterations):
         changes = 0    
         graph = copy.deepcopy(graph_original)
         for x in graph:
@@ -207,9 +211,10 @@ if __name__ == '__main__':
     
     for i in range(1):
         #vary_folder(L, good_folder)
+        vary_folder2(L, good_folder)
         #clone_folder(L, good_folder)
         #create_new_cirkel2(L)
-        vary_one(L)
+        #vary_one(L)
         
 
 
