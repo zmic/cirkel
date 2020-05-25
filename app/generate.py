@@ -175,7 +175,8 @@ def create_new_cirkel2(L):
 def vary_one():    
     path = r"F:\GEN\CIRKEL\XK\c_159002192366.jpg"
     m = read_metadata(path)
-    print(m)
+    for x in m['graph']:
+        print(x)
     
     
 if __name__ == '__main__':
