@@ -174,9 +174,9 @@ def create_new_cirkel2(L):
 
 def vary_one(L):    
     path = r"F:\GEN\CIRKEL\XK\c_159002192366.jpg"
-    m = read_metadata(path)
+    graph = read_graph(path)
     changes = 0
-    for x in m['graph']:
+    for x in graph:
         if x[0] == 'ŋint':
             if random.random() < .1:
                 x[1][0] += 1
