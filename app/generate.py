@@ -192,6 +192,8 @@ def vary_one(L):
                 save_image(L, image, "cirkel.cirkel2", graph) 
         except IndexError:
             continue
+        except ValueError:
+            continue
     
 if __name__ == '__main__':
     print("-------------------------------------------------------------------")
