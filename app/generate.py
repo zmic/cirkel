@@ -172,11 +172,20 @@ def create_new_cirkel2(L):
     save_image(L, image, "cirkel.cirkel2", graph) 
 
 
-def vary_one():    
+def vary_one(L):    
     path = r"F:\GEN\CIRKEL\XK\c_159002192366.jpg"
     m = read_metadata(path)
+    changes = 0
     for x in m['graph']:
-        print(x)
+        if x[0] == 'ŋint':
+            if random.random() < .1:
+                x[1][0] += 1
+                changes += 1
+    if changes:
+        graph = znode.load(graph)
+        graph.eval()
+        image = cirkel.cirkel2(*graph.r)
+        save_image(L, image, "cirkel.cirkel2", graph) 
     
     
 if __name__ == '__main__':
@@ -193,7 +202,7 @@ if __name__ == '__main__':
         #vary_folder(L, good_folder)
         #clone_folder(L, good_folder)
         #create_new_cirkel2(L)
-        vary_one()
+        vary_one(L)
         
 
 
